@@ -1,73 +1,157 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <title>Balu's Personal Site</title>
+  <meta charset="UTF-8">
+  <title>Wordle: Baby Name Edition</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #121213;
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 50px;
+    }
+
+    h1 {
+      color: #6aaa64;
+    }
+
+    #board {
+      display: grid;
+      grid-template-columns: repeat(8, 50px);
+      grid-gap: 5px;
+      margin-bottom: 20px;
+    }
+
+    .tile {
+      width: 50px;
+      height: 50px;
+      background-color: #3a3a3c;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 24px;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    .correct {
+      background-color: #6aaa64;
+    }
+
+    .present {
+      background-color: #c9b458;
+    }
+
+    .absent {
+      background-color: #3a3a3c;
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      font-size: 16px;
+      width: 200px;
+      text-transform: uppercase;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin-left: 10px;
+      cursor: pointer;
+    }
+
+    #message {
+      margin-top: 20px;
+      font-size: 18px;
+    }
+  </style>
 </head>
-
 <body>
-    <table cellspacing="20">
-        <tr>
-            <td><img src="images/MyPic_New.png" alt="Murugabalu profile pic"></td>
-            <td>
-                <h1>Murugabalu</h1>
-                <p><em>Working as Senior Associate at <strong><a
-                                href="https://www.cognizant.com/us/en">Cognizant</a></strong>.</em></p>
-                <p>I am working as a back-end developer. I love to learn.</p>
-            </td>
-        </tr>
-    </table>
-    <hr>
-    <h3>Educational Details</h3>
-    <table cellspacing="10">
-        <thead>
-            <tr>
-                <th>Dates</th>
-                <th>Grade</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>2010-2014</td>
-                <td>B.Tech</td>
-            </tr>
-            <tr>
-                <td>2010</td>
-                <td>12th Grade</td>
-            </tr>
-            <tr>
-                <td>2008</td>
-                <td>10th Grade</td>
-            </tr>
-        </tbody>
-        <tfoot>
 
-        </tfoot>
-    </table><br>
-    <hr>
-    <h3>Skills</h3>
-    <table cellspacing="10">
-        <tr>
-            <td>Java</td>
-            <td>⭐⭐⭐⭐</td>
-        </tr>
-        <tr>
-            <td>Springboot</td>
-            <td>⭐⭐⭐</td>
-        </tr>
-        <tr>
-            <td>AWS</td>
-            <td>⭐⭐⭐⭐</td>
-        </tr>
-        <tr>
-            <td>Blockchain</td>
-            <td>⭐⭐⭐</td>
-        </tr>
-    </table>
-    <hr>
-    <a href="hobbies.html">My Hobbies</a>
-    <a href="contact-me.html">Contact Me</a>
+  <h1>Wordle: Baby Name Edition</h1>
+  <div id="board"></div>
+
+  <div>
+    <input type="text" id="guess" maxlength="8" placeholder="Enter 8-letter word">
+    <button onclick="submitGuess()">Guess</button>
+  </div>
+
+  <div id="message"></div>
+
+  <script>
+    const hiddenWord = "SHANVIKA";
+    const maxAttempts = 6;
+    let currentAttempt = 0;
+
+    const board = document.getElementById("board");
+    const message = document.getElementById("message");
+
+    function createRow(guess, feedback) {
+      for (let i = 0; i < 8; i++) {
+        const tile = document.createElement("div");
+        tile.classList.add("tile");
+
+        if (guess) {
+          tile.textContent = guess[i];
+          tile.classList.add(feedback[i]);
+        }
+
+        board.appendChild(tile);
+      }
+    }
+
+    function submitGuess() {
+      const input = document.getElementById("guess");
+      const guess = input.value.toUpperCase();
+
+      if (guess.length !== 8) {
+        alert("Please enter an 8-letter word.");
+        return;
+      }
+
+      if (currentAttempt >= maxAttempts) return;
+
+      const feedback = getFeedback(guess, hiddenWord);
+      createRow(guess, feedback);
+
+      currentAttempt++;
+
+      if (guess === hiddenWord) {
+        message.textContent = "🎉 Correct! You guessed SHANVIKA!";
+      } else if (currentAttempt === maxAttempts) {
+        message.textContent = `😞 Out of attempts! The word was ${hiddenWord}`;
+      }
+
+      input.value = "";
+    }
+
+    function getFeedback(guess, target) {
+      const feedback = Array(8).fill("absent");
+      const targetArr = target.split("");
+
+      // First pass: correct letters
+      for (let i = 0; i < 8; i++) {
+        if (guess[i] === target[i]) {
+          feedback[i] = "correct";
+          targetArr[i] = null;
+        }
+      }
+
+      // Second pass: present letters
+      for (let i = 0; i < 8; i++) {
+        if (feedback[i] !== "correct" && targetArr.includes(guess[i])) {
+          feedback[i] = "present";
+          targetArr[targetArr.indexOf(guess[i])] = null;
+        }
+      }
+
+      return feedback;
+    }
+  </script>
+
 </body>
-
 </html>
