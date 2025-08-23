@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Wordle: Baby Name Edition</title>
+  <title>Guess our Baby Name</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -72,7 +72,7 @@
 </head>
 <body>
 
-  <h1>Wordle: Baby Name Edition</h1>
+  <h1>Guess the name</h1>
   <div id="board"></div>
 
   <div>
@@ -121,9 +121,9 @@
       currentAttempt++;
 
       if (guess === hiddenWord) {
-        message.textContent = "🎉 Correct! You guessed SHANVIKA!";
+        message.textContent = "🎉 Correct! You guessed the name SHANVIKA! 😊";
       } else if (currentAttempt === maxAttempts) {
-        message.textContent = `😞 Out of attempts! The word was ${hiddenWord}`;
+        message.textContent = `Our little Angel is named ${hiddenWord} 😊`;
       }
 
       input.value = "";
@@ -155,3 +155,4 @@
 
 </body>
 </html>
+
