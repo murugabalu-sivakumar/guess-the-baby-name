@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>How to Play Wordle</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #f0f0f0;
+    padding: 40px;
+    max-width: 700px;
+    margin: auto;
+    line-height: 1.6;
+  }
+  h1 {
+    text-align: center;
+    color: #333;
+  }
+  p {
+    font-size: 18px;
+  }
+  .example {
+    display: flex;
+    margin-top: 10px;
+  }
+  .tile {
+    width: 40px;
+    height: 40px;
+    margin: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 20px;
+    text-transform: uppercase;
+    border: 2px solid #999;
+  }
+  .correct {
+    background-color: #6aaa64;
+    border-color: #6aaa64;
+    color: #fff;
+  }
+  .present {
+    background-color: #c9b458;
+    border-color: #c9b458;
+    color: #fff;
+  }
+  .absent {
+    background-color: #787c7e;
+    border-color: #787c7e;
+    color: #fff;
+  }
+  .note {
+    margin-top: 20px;
+    font-size: 16px;
+  }
+</style>
+</head>
+<body>
+
+<h1>How to Play Wordle</h1>
+<p>Guess the Wordle in 6 tries.</p>
+<p>Each guess must be a valid 5-letter word.</p>
+<p>The color of the tiles will change to show how close your guess was to the word.</p>
+
+<h2>Examples</h2>
+
+<div class="example">
+  <div class="tile correct">W</div>
+  <div class="tile">E</div>
+  <div class="tile">A</div>
+  <div class="tile">R</div>
+  <div class="tile">Y</div>
+</div>
+<p class="note">W is in the word and in the correct spot.</p>
+
+<div class="example">
+  <div class="tile">T</div>
+  <div class="tile present">I</div>
+  <div class="tile">N</div>
+  <div class="tile">E</div>
+  <div class="tile">S</div>
+</div>
+<p class="note">I is in the word but in the wrong spot.</p>
+
+<div class="example">
+  <div class="tile">A</div>
+  <div class="tile">B</div>
+  <div class="tile">C</div>
+  <div class="tile absent">U</div>
+  <div class="tile">D</div>
+</div>
+<p class="note">U is not in the word in any spot.</p>
+
+</body>
+</html>
