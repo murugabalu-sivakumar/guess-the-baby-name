@@ -5,69 +5,94 @@
   <title>Guess our Baby Name</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #121213;
-      color: #ffffff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding-top: 50px;
-    }
+  font-family: Arial, sans-serif;
+  background: #121213;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 50px;
+  zoom: 1.2; /* Slightly zoom everything */
+}
 
-    h1 {
-      color: #6aaa64;
-    }
+h1 {
+  color: #6aaa64;
+  font-size: 2.2rem;
+}
 
-    #board {
-      display: grid;
-      grid-template-columns: repeat(8, 50px);
-      grid-gap: 5px;
-      margin-bottom: 20px;
-    }
+#board {
+  display: grid;
+  grid-template-columns: repeat(8, minmax(60px, 9vw)); /* Bigger & flexible */
+  grid-gap: 8px;
+  margin-bottom: 30px;
+}
 
-    .tile {
-      width: 50px;
-      height: 50px;
-      background-color: #3a3a3c;
-      color: white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 24px;
-      font-weight: bold;
-      text-transform: uppercase;
-    }
+.tile {
+  width: min(70px, 10vw);
+  height: min(70px, 10vw);
+  background-color: #3a3a3c;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 6px;
+}
 
-    .correct {
-      background-color: #6aaa64;
-    }
+.correct {
+  background-color: #6aaa64;
+}
+.present {
+  background-color: #c9b458;
+}
+.absent {
+  background-color: #3a3a3c;
+}
 
-    .present {
-      background-color: #c9b458;
-    }
+input[type="text"] {
+  padding: 15px;
+  font-size: 1.2rem;
+  width: 280px;
+  max-width: 90vw;
+  text-transform: uppercase;
+  border-radius: 6px;
+  border: none;
+}
 
-    .absent {
-      background-color: #3a3a3c;
-    }
+button {
+  padding: 15px 25px;
+  font-size: 1.2rem;
+  margin-left: 10px;
+  cursor: pointer;
+  border: none;
+  border-radius: 6px;
+  background: #6aaa64;
+  color: #fff;
+}
 
-    input[type="text"] {
-      padding: 10px;
-      font-size: 16px;
-      width: 200px;
-      text-transform: uppercase;
-    }
+#message {
+  margin-top: 25px;
+  font-size: 1.4rem;
+  text-align: center;
+  padding: 10px;
+}
 
-    button {
-      padding: 10px 20px;
-      font-size: 16px;
-      margin-left: 10px;
-      cursor: pointer;
-    }
+/* 📱 Mobile tweaks */
+@media (max-width: 600px) {
+  h1 {
+    font-size: 1.8rem;
+  }
+  .tile {
+    font-size: 1.6rem;
+  }
+  input[type="text"], button {
+    font-size: 1rem;
+    padding: 12px;
+  }
+}
 
-    #message {
-      margin-top: 20px;
-      font-size: 18px;
-    }
   </style>
 </head>
 <body>
@@ -160,6 +185,7 @@
 
 </body>
 </html>
+
 
 
 
